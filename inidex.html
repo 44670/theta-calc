@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Theta New</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function calculateThetaNew() {
+            const theta_pretrain = parseFloat(document.getElementById('theta_pretrain').value);
+            const T_pretrain = parseFloat(document.getElementById('T_pretrain').value);
+            const T_new = parseFloat(document.getElementById('T_new').value);
+
+            const log_base = T_pretrain / (2 * Math.PI);
+            const log_argument = T_new / (2 * Math.PI);
+            const log_value = Math.log(log_argument) / Math.log(log_base);
+
+            const theta_new = Math.pow(theta_pretrain, log_value);
+            document.getElementById('result').innerText = `Theta New: ${theta_new}`;
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-4">Calculate Theta New</h2>
+        <div class="mb-4">
+            <label for="theta_pretrain" class="block text-gray-700">Theta Pretrain</label>
+            <input type="number" id="theta_pretrain" class="mt-1 p-2 w-full border rounded" placeholder="Enter Theta Pretrain">
+        </div>
+        <div class="mb-4">
+            <label for="T_pretrain" class="block text-gray-700">T Pretrain</label>
+            <input type="number" id="T_pretrain" class="mt-1 p-2 w-full border rounded" placeholder="Enter T Pretrain">
+        </div>
+        <div class="mb-4">
+            <label for="T_new" class="block text-gray-700">T New</label>
+            <input type="number" id="T_new" class="mt-1 p-2 w-full border rounded" placeholder="Enter T New">
+        </div>
+        <button onclick="calculateThetaNew()" class="w-full bg-blue-500 text-white p-2 rounded">Calculate</button>
+        <div id="result" class="mt-4 text-xl text-gray-700"></div>
+    </div>
+</body>
+</html>
